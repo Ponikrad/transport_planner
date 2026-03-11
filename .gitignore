@@ -1,0 +1,74 @@
+# ========================
+# PYTHON / BACKEND
+# ========================
+
+venv/
+env/
+.venv/
+
+# Zmienne środowiskowe 
+.env
+
+# Skompilowane pliki Pythona
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pliki testów i pokrycia kodu
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dystrybucja/pakowanie
+dist/
+build/
+*.egg-info/
+
+# ========================
+# JAVASCRIPT / FRONTEND
+# ========================
+
+# Zależności
+node_modules/
+
+# Zbudowana aplikacja
+frontend/dist/
+frontend/build/
+
+# Logi npm
+npm-debug.log*
+yarn-error.log*
+
+# ========================
+# BAZA DANYCH
+# ========================
+
+# Lokalne pliki bazy SQLite (jeśli używasz do testów)
+*.db
+*.sqlite3
+
+# ========================
+# SYSTEM OPERACYJNY
+# ========================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# MacOS
+.DS_Store
+
+# ========================
+# EDYTORY KODU
+# ========================
+
+.vscode/
+
+.idea/
+
+# ========================
+# DOCKER
+# ========================
+
+docker-volumes/
