@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.dependencies import get_db
+from app.core.dependencies import get_db, get_current_user, require_admin
 from app.schemas.driver import DriverCreate, DriverUpdate, DriverResponse
 from app.services import driver_service
 
@@ -31,5 +31,5 @@ def update_driver(driver_id: int, data: DriverUpdate, db: Session = Depends(get_
 
 
 @router.delete("/{driver_id}")
-def delete_driver(driver_id: int, db: Session = Depends(get_db)):
+def delete_driver(driver_id: int, db: Session = Depends(get_db), current_user = Depends(require_admin)):
     return driver_service.delete_driver(driver_id, db)

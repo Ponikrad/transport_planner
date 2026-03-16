@@ -77,5 +77,10 @@ class Driver(BaseModel):
     back_populates="driver"
     )
 
+    schedules = relationship(
+    "Schedule",
+    back_populates="driver"
+    )
+
     def __repr__(self):
         return f"<Driver {self.first_name} {self.last_name} ({self.status.value})>"

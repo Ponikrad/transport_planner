@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.dependencies import get_db
+from app.core.dependencies import get_db, get_current_user, require_admin
 from app.schemas.vehicle import VehicleCreate, VehicleUpdate, VehicleResponse
 from app.services import vehicle_service
 
@@ -36,5 +36,5 @@ def update_vehicle(vehicle_id: int, data: VehicleUpdate, db: Session = Depends(g
 
 
 @router.delete("/{vehicle_id}")
-def delete_vehicle(vehicle_id: int, db: Session = Depends(get_db)):
+def delete_vehicle(vehicle_id: int, db: Session = Depends(get_db), current_user = Depends(require_admin)):
     return vehicle_service.delete_vehicle(vehicle_id, db)

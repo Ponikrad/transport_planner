@@ -26,7 +26,6 @@ def get_available_vehicles(db: Session) -> list[Vehicle]:
 
 
 def create_vehicle(data: VehicleCreate, db: Session) -> Vehicle:
-    #Sprawdzamy czy numer rejestracyjny już istnieje
     existing = db.query(Vehicle).filter(
         Vehicle.plate_number == data.plate_number
     ).first()
@@ -44,7 +43,6 @@ def create_vehicle(data: VehicleCreate, db: Session) -> Vehicle:
 
 
 def update_vehicle(vehicle_id: int, data: VehicleUpdate, db: Session) -> Vehicle:
-    """Aktualizuje dane pojazdu"""
     vehicle = get_vehicle_by_id(vehicle_id, db)
 
     updates = data.model_dump(exclude_unset=True)
@@ -57,7 +55,6 @@ def update_vehicle(vehicle_id: int, data: VehicleUpdate, db: Session) -> Vehicle
 
 
 def delete_vehicle(vehicle_id: int, db: Session) -> dict:
-    """Usuwa pojazd"""
     vehicle = get_vehicle_by_id(vehicle_id, db)
     db.delete(vehicle)
     db.commit()

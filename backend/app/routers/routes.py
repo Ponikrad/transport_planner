@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.dependencies import get_db
+from app.core.dependencies import get_db, get_current_user, require_admin
 from app.schemas.route import RouteCreate, RouteUpdate, RouteResponse
 from app.services import route_service
 
@@ -31,5 +31,5 @@ def update_route(route_id: int, data: RouteUpdate, db: Session = Depends(get_db)
 
 
 @router.delete("/{route_id}")
-def delete_route(route_id: int, db: Session = Depends(get_db)):
+def delete_route(route_id: int, db: Session = Depends(get_db), current_user = Depends(require_admin)):
     return route_service.delete_route(route_id, db)
